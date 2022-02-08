@@ -1,0 +1,5 @@
+telethon
+pymongo
+dnspython
+telegraph
+heroku3
