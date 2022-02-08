@@ -2,15 +2,17 @@ from telethon import events
 import heroku3
 from mongo import HerokuApisDB
 
-from config import bot
+from config import bot, main_group_id
 
 apidb = HerokuApisDB()
 
 @bot.on(events.NewMessage(pattern=f"/start"))
 async def _(event):
-    await event.reply("Im here.")
+    if event.text == '/start' or event.text == '/start@Dio_Brando_Robot':
+        await event.reply("You were expecting a welcome but,", file='https://c.tenor.com/WI1--JsW33EAAAAC/dio-jojo.gif')
+        
 
-@bot.on(events.NewMessage(pattern=f"/off"))
+@bot.on(events.NewMessage(pattern=f"/off", chats=main_group_id))
 async def _(event):
     try:
         username = event.text.replace('/off', '')
@@ -23,7 +25,7 @@ async def _(event):
     except Exception as e:
         await event.reply(str(e))
 
-@bot.on(events.NewMessage(pattern=f"/on"))
+@bot.on(events.NewMessage(pattern=f"/on"), chats=main_group_id)
 async def _(event):
     try:
         username = event.text.replace('/on', '')
@@ -34,7 +36,7 @@ async def _(event):
     except Exception as e:
         await event.reply(str(e))
 
-@bot.on(events.NewMessage(pattern=f"/addapi"))
+@bot.on(events.NewMessage(pattern=f"/addapi"), chats=main_group_id)
 async def _(event):
     try:
         _, username, appname, apikey = event.text.split(" ")
@@ -43,7 +45,7 @@ async def _(event):
     except Exception as e:
         await event.reply(e)
 
-@bot.on(events.NewMessage(pattern=f"/removeapi"))
+@bot.on(events.NewMessage(pattern=f"/removeapi"), chats=main_group_id)
 async def _(event):
     try:
         _, username = event.text.split(" ")
@@ -52,7 +54,7 @@ async def _(event):
     except Exception as e:
         await event.reply(e)
 
-@bot.on(events.NewMessage(pattern=f"/allapi"))
+@bot.on(events.NewMessage(pattern=f"/allapi"), chats=main_group_id)
 async def _(event):
     try:
         s = ''

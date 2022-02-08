@@ -7,6 +7,7 @@ api_id = os.environ.get('API_ID')
 api_hash = os.environ.get('API_HASH')
 bot_token = os.environ.get('BOT_TOKEN')
 db_url = os.environ.get('MONGO_DB_URL')
+main_group_id = int(os.environ.get('MAIN_GROUP_ID'))
 
 client = MongoClient(db_url, tls=True)
 
