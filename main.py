@@ -25,7 +25,7 @@ async def _(event):
     except Exception as e:
         await event.reply(str(e))
 
-@bot.on(events.NewMessage(pattern=f"/on"), chats=main_group_id)
+@bot.on(events.NewMessage(pattern=f"/on", chats=main_group_id))
 async def _(event):
     try:
         username = event.text.replace('/on', '')
@@ -36,7 +36,7 @@ async def _(event):
     except Exception as e:
         await event.reply(str(e))
 
-@bot.on(events.NewMessage(pattern=f"/addapi"), chats=main_group_id)
+@bot.on(events.NewMessage(pattern=f"/addapi", chats=main_group_id))
 async def _(event):
     try:
         _, username, appname, apikey = event.text.split(" ")
@@ -45,7 +45,7 @@ async def _(event):
     except Exception as e:
         await event.reply(e)
 
-@bot.on(events.NewMessage(pattern=f"/removeapi"), chats=main_group_id)
+@bot.on(events.NewMessage(pattern=f"/removeapi", chats=main_group_id))
 async def _(event):
     try:
         _, username = event.text.split(" ")
@@ -54,7 +54,7 @@ async def _(event):
     except Exception as e:
         await event.reply(e)
 
-@bot.on(events.NewMessage(pattern=f"/allapi"), chats=main_group_id)
+@bot.on(events.NewMessage(pattern=f"/allapi", chats=main_group_id))
 async def _(event):
     try:
         s = ''
